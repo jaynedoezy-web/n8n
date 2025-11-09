@@ -1,0 +1,15 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - WEBHOOK_URL=http://localhost:5678/
+      # Strongly recommended for credentials encryption (set your own 32+ char string)
+      - N8N_ENCRYPTION_KEY=change_me_to_a_long_random_string
+      # Default DB is SQLite; for Postgres, see the variant below.
+    volumes:
+      - ./.n8n:/home/node/.n8n
+    restart: unless-stopped
