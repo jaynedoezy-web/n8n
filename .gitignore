@@ -1,3 +1,7 @@
+# n8n local deployment data
+.n8n/
+.claude/
+
 node_modules
 .DS_Store
 .tmp

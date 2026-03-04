@@ -7,7 +7,20 @@ services:
       - N8N_HOST=n8n.halfred.app
       - N8N_PROTOCOL=https
       - WEBHOOK_URL=https://n8n.halfred.app/
-      - N8N_ENCRYPTION_KEY=change_me_to_a_long_random_string
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+    env_file:
+      - .env
     volumes:
       - ./.n8n:/home/node/.n8n
     restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    restart: unless-stopped
+    depends_on:
+      - n8n
