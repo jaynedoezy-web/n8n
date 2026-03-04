@@ -46,3 +46,32 @@ Before every action:
 - **Weather**: NWS API for conditions and forecasts
 - **Cloudflare**: Workers, KV, R2, D1, Hyperdrive management
 - **Automation**: n8n webhooks for anything without a native tool
+
+### Document Persistence
+
+When Halfred generates a document, file, or content artifact, always follow this process:
+
+**Step 1 — Save to GitHub**
+```bash
+# Clone or navigate to the Halfred-Files repo
+# Repo: jaynedoezy-web/Halfred-Files
+# Commit the file with a descriptive message
+```
+- Organize: `documents/`, `code/`, `reports/`, `meeting-notes/`, `templates/`
+- Naming: descriptive + date when relevant (e.g., `2026-03-04-quarterly-review.md`)
+- Use `git` directly — Claude Code has local git access
+
+**Step 2 — Index in Notion**
+Create an entry in **Halfred Files Index** (`collection://a52fe398-e435-4e6d-9bb4-88f94345e38d`):
+
+| Property | Value |
+|----------|-------|
+| File Name | The filename |
+| Description | Brief summary |
+| GitHub URL | Direct link to file in repo |
+| File Path | Path within repo |
+| File Type | md / txt / json / csv / html / pdf / other |
+| Source | "Claude Code" |
+| Tags | document / code / report / template / meeting-notes / research / config |
+
+Confirm before saving: "Shall I save this to Halfred Files and index it in Notion?"
